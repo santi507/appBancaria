@@ -4,6 +4,9 @@
 // Font path is used to include ionicons,
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
+*{
+  font-family: Arial, Helvetica, sans-serif;
+}
 
 
 // The app direction is used to include
@@ -34,13 +37,24 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
+  primary:    #003882,
+  secondary:  #ff7900,
   danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  light:      #ffffff,
+  dark:       #222,
+  bgp:        #0055C2,
 );
 
+
+// Top Toolbar
+$toolbar-background: color($colors, primary);
+
+// Bottom tabs
+$tabs-background: color($colors, primary);
+$tabs-tab-color-active: color($colors, light);
+$tabs-ios-tab-icon-color: color($colors, light);
+$tabs-ios-tab-text-color: color($colors, light);
+$tabs-ios-tab-font-size: 15px;
 
 // App iOS Variables
 // --------------------------------------------------

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { NavController, ModalController } from 'ionic-angular';
 
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
+import { LocationPage } from '../location/location';
 import { HomePage } from '../home/home';
 
 @Component({
@@ -10,10 +10,14 @@ import { HomePage } from '../home/home';
 export class TabsPage {
 
   tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = ContactPage;
 
-  constructor() {
+  constructor(public modalCtrl: ModalController, public navCtrl: NavController) {
 
   }
+
+  locations(): void {
+    let modal = this.navCtrl.push(LocationPage);
+    // modal.present();
+  }
+
 }
