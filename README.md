@@ -1,1 +1,1 @@
-"# Reto de programaci¢n - Consultec" 
+# Reto de programaci√≥n - Consultec
