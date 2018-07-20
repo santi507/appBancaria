@@ -7,8 +7,14 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
+  isRound: boolean = true;
+
   constructor(public navCtrl: NavController) {
  
+  }
+
+  forgetPass() {
+    console.log('Olvidé mi contraseña');
   }
 
 }

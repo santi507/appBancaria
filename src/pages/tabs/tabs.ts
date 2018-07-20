@@ -16,8 +16,7 @@ export class TabsPage {
   }
 
   locations(): void {
-    let modal = this.navCtrl.push(LocationPage);
-    // modal.present();
+    this.navCtrl.push(LocationPage);
   }
 
 }

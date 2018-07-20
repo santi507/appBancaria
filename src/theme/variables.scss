@@ -52,21 +52,25 @@ $toolbar-background: color($colors, primary);
 // Bottom tabs
 $tabs-background: color($colors, primary);
 $tabs-tab-color-active: color($colors, light);
-$tabs-ios-tab-icon-color: color($colors, light);
-$tabs-ios-tab-text-color: color($colors, light);
-$tabs-ios-tab-font-size: 15px;
+
+
+
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-
+$tabs-ios-tab-icon-color: color($colors, light);
+$tabs-ios-tab-text-color: color($colors, light);
+$tabs-ios-tab-font-size: 15px;
 
 
 
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
-
+$tabs-md-tab-icon-color: color($colors, light);
+$tabs-md-tab-text-color: color($colors, light);
+$tabs-md-tab-font-size: 15px;
 
 
 
