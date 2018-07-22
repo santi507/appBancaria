@@ -1,3 +1,7 @@
+ion-app._gmaps_cdv_ .nav-decor{
+    background-color: transparent !important;
+}
+
 page-location{
     .header-ios .toolbar-ios:last-child .toolbar-background-ios{
         border-width: 0 0 3px;
@@ -11,6 +15,10 @@ page-location{
         border-width: 0 0 3px;
         border-style: solid;
         border-color: color($colors,secondary);
+    }
+
+    #map {
+        height: 100%;
     }
 
 }

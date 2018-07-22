@@ -7,10 +7,16 @@ import { LocationPage } from '../pages/location/location';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+
 import { TabHiddenDirective } from '../directives/tab-hidden/tab-hidden';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Diagnostic } from '@ionic-native/diagnostic';
+import { GoogleMaps } from '@ionic-native/google-maps';
+import { LocationProvider } from '../providers/location/location';
 
 @NgModule({
   declarations: [
@@ -22,6 +28,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       backButtonIcon:'ios-arrow-back'
@@ -37,7 +45,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    GoogleMaps,
+    Diagnostic,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    LocationProvider
   ]
 })
 export class AppModule {}
