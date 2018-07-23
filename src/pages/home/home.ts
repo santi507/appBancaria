@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -9,12 +9,13 @@ export class HomePage {
 
   isRound: boolean = true;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public modalCtrl: ModalController) {
  
   }
 
   forgetPass() {
     console.log('Olvidé mi contraseña');
   }
+  
 
 }
