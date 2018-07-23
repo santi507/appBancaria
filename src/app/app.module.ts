@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { LocationPage } from '../pages/location/location';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { DirectionPage } from '../pages/direction/direction';
 
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,6 +25,7 @@ import { LocationProvider } from '../providers/location/location';
     LocationPage,
     HomePage,
     TabsPage,
+    DirectionPage,
     TabHiddenDirective
   ],
   imports: [
@@ -41,6 +43,7 @@ import { LocationProvider } from '../providers/location/location';
     LocationPage,
     HomePage,
     TabsPage,
+    DirectionPage,
   ],
   providers: [
     StatusBar,

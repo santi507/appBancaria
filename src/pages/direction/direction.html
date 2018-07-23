@@ -1,7 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ubicaciones cerca de ti
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 
 
-<ion-content padding class="main-view">
-  <div class="modal_content">
-    <div id="mapDirection"></div>
-  </div>
+<ion-content>
+    <div #mapDirection id="mapDirection"></div>
+    <ion-fab middle left>
+        <button ion-fab color="primary" (click)="drawRoute()">
+          Ir
+        </button>
+    </ion-fab>
 </ion-content>

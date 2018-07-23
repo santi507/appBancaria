@@ -1,11 +1,13 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { ModalController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
 
-import { Diagnostic } from '@ionic-native/diagnostic';
 import { LocationService, GoogleMaps, GoogleMap, LatLng, GoogleMapsEvent, GoogleMapOptions, MyLocation, Marker } from '@ionic-native/google-maps';
 
+import { DirectionPage } from '../direction/direction'
 import { LocationProvider } from '../../providers/location/location';
+
+declare var google;
 
 @Component({
   selector: 'page-location',
@@ -13,22 +15,24 @@ import { LocationProvider } from '../../providers/location/location';
 })
 export class LocationPage {
   public locations = [];
-  public points = [];
+  public directionsService = new google.maps.DirectionsService();
+  public directionsDisplay = new google.maps.DirectionsRenderer();
+ 
   @ViewChild('map') mapElement: ElementRef;
-  @ViewChild('error') errorElement: ElementRef;
-  private map: GoogleMap;
-  private location: LatLng;
+  map: any;
+  origin: any;
+  destination: any;
 
-  constructor(public modalCtrl: ModalController, public loading: LoadingController, private diagnostic: Diagnostic, public platform: Platform, private googleMaps: GoogleMaps, public locationsProvider: LocationProvider) {
+  constructor(public navCtrl: NavController, public loading: LoadingController, public platform: Platform, public locationsProvider: LocationProvider) {
     this.locations = locationsProvider.getLocations();
   }
 
   ionViewDidLoad() {
-    this.points = [];
-    this.checkLocation();
+   this.loadMap();
   }
 
   loadMap() {
+
     let loader = this.loading.create({
       spinner: 'ios',
       content: 'Cargando ubicaciones...'
@@ -40,50 +44,62 @@ export class LocationPage {
   }
 
   showMap() {
-    LocationService.getMyLocation().then((myLocation: MyLocation) => {
-      let element = this.mapElement.nativeElement;
-      let options: GoogleMapOptions = {
-        camera: {
-          target: myLocation.latLng,
-          zoom: 12
-        }
-      };
+    LocationService.getMyLocation().then( (myLocation: MyLocation) => {
+      let mapElement = this.mapElement.nativeElement;
+      let myPoint = myLocation.latLng;
+      this.origin = new google.maps.LatLng(myPoint.lat, myPoint.lng);
+      let mapOptions = {
+        center: myPoint,
+        zoom: 15
+      }
 
-      this.points.push(myLocation.latLng);
-
-      this.map = GoogleMaps.create(element, options);
-      this.addMarker(myLocation.latLng, this.map,'red');
-      this.locations.forEach(location => {
-        this.addMarker(location.coordinates, this.map, 'blue');
+      this.map = new google.maps.Map(mapElement, mapOptions);
+      this.addMarker(myPoint, 'red', this.map);
+      this.locations.forEach( location => {
+        let marker = this.addMarker(location.coordinates, 'blue', this.map);
+        marker.addListener('click', () => {
+          this.destination = marker.getPosition();
+          //this.drawRoute(this.map, this.origin, this.destination);
+          this.showDirection(this.origin, this.destination);
+        })
       });
+
+    }).catch( (e) => {
+      alert('Debes activar la geolocalización en las configuraciones de tu celular.');
     });
   }
 
-
-  addMarker(location, mapa, color) {
-    return mapa.addMarker({
-      icon: color,
-      position: location
-    }).then( (marker: Marker) => {
-        marker.addEventListener(GoogleMapsEvent.MARKER_CLICK).subscribe((m) => {
-          this.points.push(m[0]);
-          // Show modal
-          let directioModal = this.modalCtrl.create('DirectionPage', { points: this.points });
-          
-          directioModal.present();
-        });
+  addMarker(position, color, map) {
+    return new google.maps.Marker({
+      position: position,
+      icon: `http://maps.google.com/mapfiles/ms/icons/${color}-dot.png`,
+      map: map
     });
   }
 
+  drawRoute(map, origin, destination) {
+    
 
-  checkLocation(){
-    this.platform.ready().then(() => {
-      this.diagnostic.isLocationEnabled().then( (enabled) => {
-        this.loadMap();
-      }).catch( (e) => {
-        alert('Debes activar la geolocalización en las configuraciones de tu celular');
-      });
+    this.directionsDisplay.setMap(map);
+
+    this.directionsService.route({
+      origin: origin,
+      destination: destination,
+      travelMode: google.maps.TravelMode['TRANSIT']
+    }, (res, status) => {
+      if(status == google.maps.DirectionsStatus.OK){
+        this.directionsDisplay.setDirections(res);
+      }
+    });
+
+  }
+
+  showDirection(origin, destination) {
+    this.navCtrl.push(DirectionPage,{
+      origin: origin,
+      destination: destination
     });
   }
+
 
 }
