@@ -3,6 +3,7 @@
 Prueba de suficiencia para optar a la posición de Ingeniero de Desarrollo de Aplicaciones Móviles. 
 
 ## Tabla de Contenido
+
 - [Quick start](#quick-start)
 - [Desplegar a un dispositivo](#desplegar-a-un-dispositivo)
 
@@ -17,6 +18,7 @@ Pasos a seguir para descargar el proyecto:
 ## Desplegar a un dispositivo
 
 ### Requisitos
+
 - [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html)
 - [Android Studio](https://developer.android.com/studio/)
 - Herramientas de Android SDK actualizadas, plataformas y dependencias de componentes.
@@ -24,3 +26,5 @@ Pasos a seguir para descargar el proyecto:
 Para comprobar los requerimientos  `ionic cordova requirements android`
 
 ### Ejecutar aplicación
+
+Para ejecutar su aplicación, todo lo que tiene que hacer es habilitar la depuración de USB y el Modo de desarrollador en su dispositivo Android, luego ejecute `ionic cordova run android --device` desde la linea de comando.
