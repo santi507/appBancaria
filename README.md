@@ -4,7 +4,7 @@ Prueba de suficiencia para optar a la posición de Ingeniero de Desarrollo de Ap
 
 ## Tabla de Contenido
 - [Quick start](#quick-start)
-- [Requisitos para iniciar el proyecto (Android)](#requisitos)
+- [Desplegar a un dispositivo](#desplegar-a-un-dispositivo)
 
 ## Quick start
 
@@ -14,6 +14,13 @@ Pasos a seguir para descargar el proyecto:
 - Ingresar a la carpeta del proyecto clonado o descargado
 - Instalar dependencias [npm](https://www.npmjs.com/): `npm install`
 
-## Requisitos para iniciar el proyecto (Android)
+## Desplegar a un dispositivo
 
-Comprobar los requisitos para ejecutar el proyecto en plataforma android  `ionic cordova requirements android`
+### Requisitos
+- [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html)
+- [Android Studio](https://developer.android.com/studio/)
+- Herramientas de Android SDK actualizadas, plataformas y dependencias de componentes.
+
+Para comprobar los requerimientos  `ionic cordova requirements android`
+
+### Ejecutar aplicación
