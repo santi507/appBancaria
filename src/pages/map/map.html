@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content>
-  
+  <!-- Se muestra si no se logra obtener la localización del dispositivo -->
   <div class="errorLocation" *ngIf="errorLocation">
     <ion-grid>
       <ion-row justify-content-center align-items-center>
@@ -18,9 +18,10 @@
     </ion-grid>
   </div>
   
-  
+  <!-- Render del mapa-->
   <div #map id="map"></div>
 
+  <!-- Se mostrara este boton al hacer touch en un pin azul -->
   <ion-fab middle left *ngIf="navParams.get('destination')">
       <button ion-fab color="primary">Ir</button>
       <ion-fab-list>

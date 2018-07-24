@@ -27,6 +27,7 @@ export class MapPage {
   @ViewChild('map') mapElement: ElementRef;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loading: LoadingController, public locationsProvider: LocationProvider, public alertCtrl: AlertController) {
+    //Cargar las localizaciones desde provider
     this.locations = locationsProvider.getLocations();
   }
 
@@ -46,9 +47,12 @@ export class MapPage {
         spinner: 'ios',
         content: 'Cargando ubicaciones...'
       });
+
       loader.present().then(()=>{
         let mapElement = this.mapElement.nativeElement;
+        //se asigna a la variable myLocation las coordenas del dispositivo
         this.myLocation = myLocation.latLng;
+        // si el parametro destination existe se asigna a la variable
         this.destination = this.navParams.get('destination');
         this.origin = new google.maps.LatLng(this.myLocation.lat, this.myLocation.lng);
         let mapOptions = {
@@ -58,10 +62,11 @@ export class MapPage {
           
         this.map = new google.maps.Map(mapElement, mapOptions);
         this.addMarker(this.myLocation, 'red', this.map);
+        //Si la variable destination es distinto de null se agrega un marker en esa coordenada
         if(this.destination){
           this.addMarker(this.destination, 'blue', this.map);
-        }else{
-          this.loadLocations();
+        }else{ 
+          this.loadLocations();//Si es la variable destination es falsa llama el método loadLocations
         }
         loader.dismiss();
       });
@@ -71,6 +76,7 @@ export class MapPage {
       
   }
 
+  //Itera el arreglo locations y agrega un marker en el mapa de color azul
   loadLocations() {
     this.locations.forEach( location => {
       let marker = this.addMarker(location.coordinates, 'blue', this.map);
@@ -86,6 +92,8 @@ export class MapPage {
     });
   }
 
+
+  //método para agregar un marker
   addMarker(position, color, map) {
     return new google.maps.Marker({
       position: position,
@@ -94,11 +102,9 @@ export class MapPage {
     });
   }
 
+  //Método para dibujar trayectoria desde la ubicación del dispositivo hasta el destino
   drawRoute(travelMode) {
-    
-
     this.directionsDisplay.setMap(this.map);
-
     this.directionsService.route({
       origin: this.origin,
       destination: this.destination,
@@ -115,7 +121,6 @@ export class MapPage {
         alert.present();
       }
     });
-
   }
 
 }

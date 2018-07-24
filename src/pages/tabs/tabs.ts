@@ -15,10 +15,9 @@ export class TabsPage {
 
   }
 
+  // Método para mostrar la página Map
   getMap() {
-    //Obtener la ubicación actual del dispositivo
     this.navCtrl.push(MapPage);
-    
   }
 
 
