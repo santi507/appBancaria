@@ -7,6 +7,7 @@ import { LocationPage } from '../pages/location/location';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { DirectionPage } from '../pages/direction/direction';
+import { MapPage } from '../pages/map/map';
 
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,6 +26,7 @@ import { LocationProvider } from '../providers/location/location';
     LocationPage,
     HomePage,
     TabsPage,
+    MapPage,
     DirectionPage,
     TabHiddenDirective
   ],
@@ -44,6 +46,7 @@ import { LocationProvider } from '../providers/location/location';
     HomePage,
     TabsPage,
     DirectionPage,
+    MapPage,
   ],
   providers: [
     StatusBar,

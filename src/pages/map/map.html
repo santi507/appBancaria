@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ubicaciones cerca de ti
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  
+  <div class="errorLocation" *ngIf="errorLocation">
+    <ion-grid>
+      <ion-row justify-content-center align-items-center>
+          <h4 padding>
+              Debes activar la geolocalización en las configuraciones de tu celular.
+          </h4>
+      </ion-row>
+    </ion-grid>
+  </div>
+  
+  
+  <div #map id="map"></div>
+
+  <ion-fab middle left *ngIf="navParams.get('destination')">
+      <button ion-fab color="primary">Ir</button>
+      <ion-fab-list>
+        <button ion-fab (click)="drawRoute('TRANSIT')"><ion-icon name="walk"></ion-icon></button>
+        <button ion-fab (click)="drawRoute('DRIVING')"><ion-icon name="car"></ion-icon></button>
+      </ion-fab-list>
+  </ion-fab>
+  
+</ion-content>
