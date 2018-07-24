@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { LocationService, MyLocation } from '@ionic-native/google-maps';
 
 import { LocationProvider } from '../../providers/location/location';
 
@@ -26,47 +27,47 @@ export class MapPage {
   @ViewChild('map') mapElement: ElementRef;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loading: LoadingController, public locationsProvider: LocationProvider, public alertCtrl: AlertController) {
-    this.myLocation = navParams.get('deviceLocation');
-    this.errorLocation = navParams.get('error');
     this.locations = locationsProvider.getLocations();
   }
 
   ionViewDidLoad() {
     if(!this.errorLocation){
-      this.loadMap();
+      this.showMap();
     }
     
   }
 
-  loadMap() {
-
-    let loader = this.loading.create({
-      spinner: 'ios',
-      content: 'Cargando ubicaciones...'
-    });
-    loader.present().then(()=>{
-      this.showMap();
-      loader.dismiss();
-    });
-  }
-
   showMap() {
-    let mapElement = this.mapElement.nativeElement;
-    let myPoint = this.myLocation;
-    this.destination = this.navParams.get('destination');
-    this.origin = new google.maps.LatLng(myPoint.lat, myPoint.lng);
-      let mapOptions = {
-        center: myPoint,
-        zoom: 13
-      }
-      
-      this.map = new google.maps.Map(mapElement, mapOptions);
-      this.addMarker(myPoint, 'red', this.map);
-      if(this.destination){
-        this.addMarker(this.destination, 'blue', this.map);
-      }else{
-        this.loadLocations();
-      }
+    
+    //Obtener la ubicación actual del dispositivo
+    LocationService.getMyLocation().then( (myLocation: MyLocation) => {
+      this.errorLocation = false
+      let loader = this.loading.create({
+        spinner: 'ios',
+        content: 'Cargando ubicaciones...'
+      });
+      loader.present().then(()=>{
+        let mapElement = this.mapElement.nativeElement;
+        this.myLocation = myLocation.latLng;
+        this.destination = this.navParams.get('destination');
+        this.origin = new google.maps.LatLng(this.myLocation.lat, this.myLocation.lng);
+        let mapOptions = {
+          center: this.myLocation,
+          zoom: 13
+        }
+          
+        this.map = new google.maps.Map(mapElement, mapOptions);
+        this.addMarker(this.myLocation, 'red', this.map);
+        if(this.destination){
+          this.addMarker(this.destination, 'blue', this.map);
+        }else{
+          this.loadLocations();
+        }
+        loader.dismiss();
+      });
+    }).catch( () => {
+      this.errorLocation = true;
+    });
       
   }
 

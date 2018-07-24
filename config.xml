@@ -3,7 +3,7 @@
     <name>appBancaria</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.0.105:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -87,6 +87,6 @@
         <variable name="API_KEY_FOR_IOS" value="AIzaSyB2PfrPwm8aTxdtbTC_9p-GcFF8fH6dCes" />
     </plugin>
     <allow-navigation href="http://192.168.0.105:8100" />
-    <allow-navigation href="http://192.168.3.232:8100" />
     <engine name="android" spec="7.0.0" />
+    <allow-navigation href="http://192.168.3.232:8100" />
 </widget>
