@@ -3,10 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { LocationPage } from '../pages/location/location';
+
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { DirectionPage } from '../pages/direction/direction';
 import { MapPage } from '../pages/map/map';
 
 import { HttpModule } from '@angular/http';
@@ -23,11 +22,9 @@ import { LocationProvider } from '../providers/location/location';
 @NgModule({
   declarations: [
     MyApp,
-    LocationPage,
     HomePage,
     TabsPage,
     MapPage,
-    DirectionPage,
     TabHiddenDirective
   ],
   imports: [
@@ -42,10 +39,8 @@ import { LocationProvider } from '../providers/location/location';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    LocationPage,
     HomePage,
     TabsPage,
-    DirectionPage,
     MapPage,
   ],
   providers: [
