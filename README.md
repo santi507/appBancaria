@@ -16,4 +16,4 @@ Pasos a seguir para descargar el proyecto:
 
 ## Requisitos para iniciar el proyecto (Android)
 
-Para verificar `ionic `
+Comprobar los requisitos para ejecutar el proyecto en plataforma android  `ionic cordova requirements android`
