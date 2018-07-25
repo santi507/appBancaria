@@ -37,6 +37,18 @@ export class LocationProvider {
     {
       "coordinates":{lat: 9.0755263, lng: -79.52392320000001},
       "description": "ATM/Banco General/ El Fuerte Milla 8, Panamá"
+    },
+    {
+      "coordinates":{lat: 9.1394235, lng: -79.53565689999999},
+      "description": "ATM/Banco General/"
+    },
+    {
+      "coordinates":{lat: 9.1062508, lng: -79.5360535},
+      "description": "ATM/Banco General/"
+    },
+    {
+      "coordinates":{lat: 9.1064719, lng: -79.5360804},
+      "description": "ATM/Banco General/"
     }
 
   ];

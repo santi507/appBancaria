@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { LocationService, MyLocation } from '@ionic-native/google-maps';
 
 import { LocationProvider } from '../../providers/location/location';
@@ -7,7 +7,6 @@ import { LocationProvider } from '../../providers/location/location';
 //variable para usar con el api de google maps
 declare var google;
 
-@IonicPage()
 @Component({
   selector: 'page-map',
   templateUrl: 'map.html',
@@ -57,7 +56,12 @@ export class MapPage {
         this.origin = new google.maps.LatLng(this.myLocation.lat, this.myLocation.lng);
         let mapOptions = {
           center: this.myLocation,
-          zoom: 13
+          mapTypeControl: false,
+          zoomControl: false,
+          fullscreenControl: false,
+          scaleControl: false,
+          streetViewControl: false,
+          zoom: 15
         }
           
         this.map = new google.maps.Map(mapElement, mapOptions);
